@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TablaPokemon from '../components/TablaPokemon.jsx';
+
+const respuesta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=50');
+const datos = await respuesta.json();
+const listaPokemon = datos.results;
+---
+
+<Layout title="Buscador de Pokémon">
+  <main>
+    <h1>Listado con Filtro en Tiempo Real</h1>
+    
+    
+    <TablaPokemon client:load initialPokemons={listaPokemon} />
+  </main>
+</Layout>
+
+<style is:global>
+  .input-busqueda {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  .tabla-pokemon {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .tabla-pokemon th, .tabla-pokemon td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  .nombre { text-transform: capitalize; font-weight: bold; }
+  .enlace { color: #4f46e5; text-decoration: none; font-weight: 500; }
+</style>
