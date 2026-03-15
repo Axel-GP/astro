@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PokemonTable from '../components/PokemonTable.jsx';
+import TablaPokemon from '../components/TablaPokemon.jsx';
 
 const respuesta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=50');
 const datos = await respuesta.json();
